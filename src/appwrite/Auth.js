@@ -1,12 +1,16 @@
 import Conf from "../Conf/Conf";
 import {Client,Account,ID} from "appwrite"
 
+const cors=require('cors');
+
 export class AuthService{
     client=new Client();
     account;
     //done in class when a new object of it is made
     constructor(){
+
         this.client
+            .use(cors())
             .setEndpoint(Conf.appwriteUrl)
             .setProject(Conf.appwriteProjectId);
         this.account=new Account(this.client);
